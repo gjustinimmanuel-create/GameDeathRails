@@ -1,0 +1,2622 @@
+   <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Rails Adventure - Panduan Game</title>
+    <style>
+        /* ============== PENGATURAN DASAR & WARNA TEMA ============== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+
+        :root {
+            --warna-utama: #121212;       /* Hitam Gelap */
+            --warna-second: #1f1f1f;      /* Abu-abu Gelap */
+            --warna-aksen: #d32f2f;       /* Merah Darah */
+            --warna-peringatan: #ff9800;  /* Kuning / Oranye */
+            --warna-teks: #f5f5f5;        /* Putih Bersih */
+            --warna-besi: #787878;        /* Abu Besi */
+            --merah-menyala: #ff0000;      /* Merah Menyala Baru */
+        }
+
+
+        body {
+            background-color: var(--warna-utama);
+            color: var(--warna-teks);
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(18, 18, 18, 0.80), rgba(18, 18, 18, 0.80)),
+                              url('https://static.deltiasgaming.com/2025/05/Dead-Rails.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+
+
+        /* ============== MENU NAVIGASI ============== */
+        nav {
+            background: rgba(31, 31, 31, 0.95);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid var(--warna-aksen);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+        }
+
+
+        .logo {
+            color: var(--warna-aksen);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+
+        .nav-links a {
+            color: var(--merah-menyala);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.6),
+                         0 0 10px rgba(255, 0, 0, 0.5),
+                         0 0 15px rgba(255, 0, 0, 0.4);
+        }
+
+
+        .nav-links a:hover {
+            color: var(--warna-peringatan);
+            text-shadow: 0 0 5px rgba(255, 152, 0, 0.8),
+                         0 0 10px rgba(255, 152, 0, 0.6),
+                         0 0 15px rgba(255, 152, 0, 0.4);
+        }
+
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--warna-peringatan);
+            transition: width 0.3s;
+        }
+
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+        /* ============== ✅ BAGIAN BERANDA / HEADER ✅ ============== */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(211, 47, 47, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+
+        header h1 {
+            font-size: 3.8rem;
+            color: var(--warna-aksen);
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(211, 47, 47, 0.5);
+            margin-bottom: 1.5rem;
+            animation: nyala 2s infinite alternate;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+
+        @keyframes nyala {
+            from { 
+                text-shadow: 0 0 10px rgba(211, 47, 47, 0.4),
+                             0 0 20px rgba(211, 47, 47, 0.2); 
+            }
+            to { 
+                text-shadow: 0 0 25px rgba(211, 47, 47, 0.8), 
+                             0 0 40px rgba(211, 47, 47, 0.4),
+                             0 0 55px rgba(255, 0, 0, 0.2); 
+            }
+        }
+
+
+        header p {
+            font-size: 1.4rem;
+            max-width: 850px;
+            margin-bottom: 2.5rem;
+            color: #e0e0e0;
+            background-color: rgba(31, 31, 31, 0.6);
+            padding: 1.2rem 1.8rem;
+            border-radius: 10px;
+            border-right: 2px solid var(--warna-aksen);
+            border-left: 2px solid var(--warna-peringatan);
+            backdrop-filter: blur(5px);
+        }
+
+
+        .tombol {
+            padding: 1rem 2.5rem;
+            background-color: var(--warna-aksen);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4), 0 0 10px rgba(211, 47, 47, 0.3);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tombol::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .tombol:hover::before {
+            left: 100%;
+        }
+
+        .tombol:hover {
+            background-color: var(--warna-peringatan);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 15px rgba(255, 152, 0, 0.4);
+        }
+
+
+        /* ============== KONTEN UTAMA ============== */
+        .container {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .judul-bagian {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--warna-peringatan);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--warna-besi);
+            padding-bottom: 0.5rem;
+        }
+
+
+        .kisi-kartu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+
+        .kartu {
+            background-color: rgba(31, 31, 31, 0.85);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--warna-aksen);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+
+        .kartu:hover {
+            transform: scale(1.05);
+        }
+
+
+        .kartu h3 {
+            color: var(--warna-peringatan);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+
+        .kartu p {
+            color: #bbbbbb;
+            font-size: 0.95rem;
+        }
+
+
+        .kartu .ikon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transform-origin: center;
+        }
+
+        /* Variasi gerakan ikon */
+        .kartu:nth-child(1) .ikon { animation: ayun 2.5s ease-in-out infinite; }
+        .kartu:nth-child(2) .ikon { animation: majuMundur 3s ease-in-out infinite; }
+        .kartu:nth-child(3) .ikon { animation: naikTurun 2.8s ease-in-out infinite; }
+        .kartu:nth-child(4) .ikon { animation: bergetar 2s ease-in-out infinite; }
+        .kartu:nth-child(5) .ikon { animation: kibas 3s ease-in-out infinite; }
+        .kartu:nth-child(6) .ikon { animation: putarPelan 6s linear infinite; }
+
+        /* Definisi animasi */
+        @keyframes ayun { 0% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } 100% { transform: rotate(-8deg); } }
+        @keyframes majuMundur { 0% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 100% { transform: translateX(-4px); } }
+        @keyframes naikTurun { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+        @keyframes bergetar { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @keyframes kibas { 0% { transform: rotate(0deg) translateY(0); } 25% { transform: rotate(5deg) translateY(-3px); } 75% { transform: rotate(-5deg) translateY(3px); } 100% { transform: rotate(0deg) translateY(0); } }
+        @keyframes putarPelan { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+
+        /* ============== ✅ MODAL / POPUP (GAYA SAMA UNTUK SEMUA) ✅ ============== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 2rem 5%;
+        }
+
+
+        .modal-isi {
+            background-color: var(--warna-second);
+            margin: auto;
+            padding: 2rem;
+            border: 2px solid var(--warna-aksen);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 0 30px rgba(211, 47, 47, 0.5);
+            position: relative;
+            animation: muncul 0.4s ease;
+        }
+
+
+        @keyframes muncul {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        .tombol-tutup {
+            color: var(--merah-menyala);
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+
+        .tombol-tutup:hover {
+            color: var(--warna-peringatan);
+            transform: rotate(90deg);
+        }
+
+
+        .judul-modal {
+            text-align: center;
+            color: var(--warna-peringatan);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            border-bottom: 2px solid var(--warna-aksen);
+            padding-bottom: 1rem;
+            clear: both;
+        }
+
+
+        .kisi-modal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+            min-height: auto;
+            padding: 2rem;
+            background-color: rgba(25, 25, 25, 0.4);
+            border-radius: 8px;
+        }
+
+
+        .kartu-detail {
+            background-color: var(--warna-utama);
+            border: 2px solid var(--warna-besi);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 400px;
+            width: 100%;
+        }
+
+
+        .kartu-detail:hover {
+            border-color: var(--warna-peringatan);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);
+        }
+
+
+        .gambar {
+            font-size: 5rem;
+            margin-bottom: 1.2rem;
+            filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
+        }
+
+
+        .kartu-detail img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+
+        .nama {
+            color: var(--merah-menyala);
+            font-weight:bold;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 3px rgba(255, 0, 0, 0.3);
+        }
+
+
+        .statistik {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0.6rem 0;
+        }
+        .kekuatan { color: #4cd137; }
+        .keunggulan { color: #fbc531; }
+
+
+        .deskripsi {
+            color: #cccccc;
+            font-size: 0.9rem;
+            margin-top: 1.2rem;
+            line-height: 1.6;
+            text-align: left;
+            background-color: rgba(31, 31, 31, 0.8);
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+
+        /* ============== BAGIAN VIDEO ============== */
+        .bagian-video {
+            background-color: rgba(25, 25, 25, 0.75);
+            padding: 4rem 5%;
+            border-top: 1px solid var(--warna-aksen);
+            border-bottom: 1px solid var(--warna-besi);
+        }
+
+
+        .pemutar-video {
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0 25px rgba(211, 47, 47, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 3px solid var(--warna-besi);
+        }
+
+
+        .pemutar-video iframe {
+            width: 100%;
+            height: 450px;
+            display: block;
+        }
+
+
+        .deskripsi-video {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #dddddd;
+        }
+
+
+        /* ============== TIPS ============== */
+        .bagian-tips {
+            background-color: rgba(31, 31, 31, 0.75);
+            padding: 3rem 5%;
+            border-top: 1px solid var(--warna-aksen);
+            border-bottom: 1px solid var(--warna-besi);
+        }
+
+
+        .daftar-tips {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+
+        .daftar-tips li {
+            background: rgba(18, 18, 18, 0.85);
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--warna-peringatan);
+            list-style: none;
+        }
+
+
+        /* ============== FOOTER ============== */
+        footer {
+            background-color: rgba(18, 18, 18, 0.9);
+            color: var(--warna-besi);
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid #333;
+        }
+
+
+        /* ============== RESPONSIF HP ============== */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .nav-links { display: flex; gap: 0.5rem; }
+            .nav-links a { margin-left: 0; font-size: 0.9rem; }
+            .pemutar-video iframe { height: 250px; }
+            .kisi-modal { grid-template-columns: 1fr; padding: 1rem; }
+        }
+
+
+/* === HANYA UBAH BAGIAN KEAHLIAN KERETA SAJA - DENGAN GAMBAR DI ATAS === */
+#modalKereta .kisi-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#modalKereta .kartu-detail {
+    display: flex;
+    flex-direction: column; /* ✅ Gambar di atas, teks di bawah */
+    background-color: #000000;
+    border: 3px solid #660000;
+    border-radius: 6px;
+    padding: 15px;
+    width: 100%;
+    max-width: 2200px;
+    min-height: 550px; /* ✅ Tinggi pas untuk gambar besar + teks */
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+}
+
+#modalKereta .kartu-detail:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 25px #ff0000, 0 0 50px rgba(255, 0, 0, 0.7);
+    transform: scale(1.01);
+}
+
+/* ✅ BAGIAN GAMBAR DI ATAS - LEBAR PENUH */
+#modalKereta .bagian-gambar-atas {
+    width: 100%;
+    height: 320px; /* ✅ Ukuran besar pas untuk gambar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a0000;
+    border: 2px solid #660000;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#modalKereta .bagian-gambar-atas img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ Gambar pas dan rapi */
+    object-position: center;
+}
+
+#modalKereta .kartu-detail:hover .bagian-gambar-atas {
+    background-color: #330000;
+    border-color: #ff0000;
+}
+
+/* ✅ BAGIAN TEKS DI BAWAH */
+#modalKereta .bagian-teks {
+    width: 100%;
+    padding: 0 15px;
+    text-align: left;
+}
+
+#modalKereta .judul-modal {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+#modalKereta .nama {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #ff0000;
+}
+
+#modalKereta .statistik {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #ff4444;
+    font-weight: 500;
+}
+
+#modalKereta .deskripsi {
+    font-size: 15px;
+    color: #cc2222;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+#modalKereta .tombol-tutup {
+    color: #ff0000;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* === AKHIR BAGIAN KEAHLIAN KERETA === */
+
+    </style>
+</head>
+<body>
+
+    <!-- ============== MENU ============== -->
+    20260528 08:17:06 || <!-- ============== MENU ============== -->
+    <nav>
+        <div class="logo">Death Rails</div>
+        <div class="nav-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#video">Cuplikan</a>
+            <a href="#kategori">Kategori</a>
+            <a href="#tips">Tips</a>
+            <a href="#sumber">Profil Developer</a>
+        </div>
+    </nav>
+
+
+    <!-- ============== HEADER ============== -->
+    <header id="beranda">
+        <h1>Death Rails Adventure</h1>
+        <p>Panduan Lengkap & Strategi Bertahan Hidup. Hadapi wabah zombie, jelajahi dungeon, dan kuasai kereta api untuk mencapai garis akhir. Tanpa Pay-to-Win, murni keahlian!</p>
+        <a href="#video" class="tombol">Mulai Jelajahi ⬇️</a>
+    </header>
+
+    <!-- ============== VIDEO ============== -->
+    <section class="bagian-video" id="video">
+        <div class="container">
+            <h2 class="judul-bagian">🎬 Cuplikan Cerita Death Rails</h2>
+            <div class="pemutar-video">
+                <iframe src="https://www.youtube.com/embed/4A-pzTxnN4o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="deskripsi-video">
+                <h3>Death Rails | Roblox Animation 01</h3>
+                <p>Saksikan animasi awal cerita dunia Death Rails. Lihat bagaimana petualangan dimulai, suasana kereta, dan bahaya zombie yang mengintai di setiap rel.</p>
+                <br>
+                <a href="#kategori" class="tombol">Lanjut ke Panduan ⬇️</a>
+            </div>
+        </div>
+    </section>
+    <!-- ============== ✅ MODAL 1: KELAS KARAKTER ✅ ============== -->
+    <!-- ============== ✅ MODAL 1: KELAS KARAKTER ✅ ============== -->
+<div id="modalKarakter" class="modal">
+    <div class="modal-isi">
+        <span class="tombol-tutup">&times;</span>
+        <h2 class="judul-modal">⚔️ Daftar Kelas Karakter</h2>
+        <div class="kisi-modal">
+            <div class="kartu-detail">
+                <div class="gambar">🎅</div>
+                <div class="nama">Santa</div>
+                <div class="statistik kekuatan"> Harga: Selesaikan Misi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Di setiap permainan karakter ini akan memberikan pemain hadiah rendem secara acak berupa kado natal.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🔱</div>
+                <div class="nama">Karampus</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Sangat lincah dan cepat dan memuncuk kan hadiah di setaip perjalanan anda. Ketika ia mati maka ia akan memuncul bos besar karampus,</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">⛓️</div>
+                <div class="nama">Alamo</div>
+                <div class="statistik kekuatan"> Harga: 50 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: Helem, Skop, Kawat berduri. </div>
+                <div class="deskripsi">Cocok untuk membangun pertahanan yang kokoh di dalam kereta. Fokus pada pertahanan kereta.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">⚡</div>
+                <div class="nama">Frakenstain</div>
+                <div class="statistik kekuatan"> Harga: 100 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: skop </div>
+                <div class="deskripsi">Hidup dan mati diatur oleh sambaran petir. Jika mati lalu tersambar petir maka ia akan bangkit kembali</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🔥</div>
+                <div class="nama">Pembakar</div>
+                <div class="statistik kekuatan"> Harga: 20 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: Botol Molotov </div>
+                <div class="deskripsi">seorang pyromaniac yang memberikan kerukan api ganda. Dengan karakter ini kerusakan api akan menganda. Terhadap botol molotov</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">👑</div>
+                <div class="nama">Raja</div>
+                <div class="statistik kekuatan"> Harga:75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: Pengawas </div>
+                <div class="deskripsi">Berperan sebagai suppor untuk memberiakan extra healt pada rekan kesatria dan memunculkan penjaga bersenjata ketika mati.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">📦</div>
+                <div class="nama">Pembungkus</div>
+                <div class="statistik kekuatan"> Harga: 35 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: srigala </div>
+                <div class="deskripsi">Menggunakan srigala sebagai alat pertahanan, dan memberikan efek jinak kepada srigala liar yang menggigitnya.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🐺</div>
+                <div class="nama">Manusia Srigala</div>
+                <div class="statistik kekuatan"> Harga: 75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: skop </div>
+                <div class="deskripsi">Sangat lincah dan cepat. Bisa bergerak di antara dengan cepat dimalam hari. Kecepatan hanya meningkat 2X di malam hari dan berkurang 0,9X pada siang hari.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">⚰️</div>
+                <div class="nama">Vampir</div>
+                <div class="statistik kekuatan"> Harga: 85 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang:  pisau darah </div>
+                <div class="deskripsi">Memiliki kecepatan yang extra dan kerusakan mele, tapi lemah terhadap sinar matahari. Pastikan beraksi di malam hari.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">⚔️</div>
+                <div class="nama">kesatria</div>
+                <div class="statistik kekuatan"> Harga: 75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: helm,pedang,baju zirah </div>
+                <div class="deskripsi">Cocok untuk seragan dekat, ia rela berkorban demi raja. Kebal terhadap seragan jarak jauh seperti pistol dan senjata lainya.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">💣</div>
+                <div class="nama">Bomber/pembongkar</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Menggunakan senjata api dan bahan peledak. Sangat kuat melawan kelompok musuh, namun kehabisan amunisi cukup cepat. Butuh manajemen barang yang baik.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">💉</div>
+                <div class="nama">Dokter</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: perban dan minyak ular </div>
+                <div class="deskripsi">Menggorbankan nyawanya untuk membangkitkan kebali rekan yang tewas di permainan.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">☣️</div>
+                <div class="nama">Pembusuk</div>
+                <div class="statistik kekuatan"> Harga: 35 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: barel asam dan tabung asam </div>
+                <div class="deskripsi">Kebal terhadap hujan asam. Memberikan efek mengerikan ketiak mati, racun akan menyebar dan membunuh para musuh-musuh nya.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">👻</div>
+                <div class="nama">Hantu</div>
+                <div class="statistik kekuatan"> Harga: 100 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Sangat lincah dan cepat. Bisa bergerak di antara musuh tanpa terlihat. Cocok untuk mengumpulkan sumber daya atau kabur dari situasi berbahaya.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">✴️</div>
+                <div class="nama">Presiden</div>
+                <div class="statistik kekuatan"> Harga: 75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Menggunakan senjata api dan bahan peledak. Sangat kuat melawan kelompok musuh, namun kehabisan amunisi cukup cepat. Butuh manajemen barang yang baik.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">❤️</div>
+                <div class="nama">penyelamat</div>
+                <div class="statistik kekuatan"> Harga: 35 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: Kapak </div>
+                <div class="deskripsi">Semakin darah pemain berkurang maka akan meningkatkan kerusakan pada musuh-musuh nya. Tanpa memberikan mereka hidup kembali dengan selamat.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🐮</div>
+                <div class="nama">MILK MAN</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang:  SUSU </div>
+                <div class="deskripsi">Memberikan kecepatan setara dengan kereta yang bertenaga baru bara.Memiliki kecepatan yang extrim ketika tubuh di selimuti oleh susu.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">♐</div>
+                <div class="nama">MILK MAN</div>
+                <div class="statistik kekuatan"> Harga:75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang:  </div>
+                <div class="deskripsi">Sangat lincah dan cepat. Bisa bergerak di antara musuh tanpa terlihat. Cocok untuk mengumpulkan sumber daya atau kabur dari situasi berbahaya.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">⚛️</div>
+                <div class="nama">Hunter</div>
+                <div class="statistik kekuatan"> Harga: 75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -panah dan perangkap beruang- </div>
+                <div class="deskripsi">Memburu manusa srigala yang berotot, tetapi mengubah srigala normal menjadi manusa srigala.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">⛏️</div>
+                <div class="nama">Penambang</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -batu bara, paku, dan helem penambang- </div>
+                <div class="deskripsi">Berguna untuk menambag coal,emas,dan berlan di lokasi tambang. Dan juga memberiakn peneragan saat malam hari.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🔒</div>
+                <div class="nama">The Armor</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Menggunakan senjata api dan bahan peledak. Sangat kuat melawan kelompok musuh, namun kehabisan amunisi cukup cepat. Butuh manajemen barang yang baik.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">⚙️</div>
+                <div class="nama">Peri</div>
+                <div class="statistik kekuatan"> Harga: 75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -Granat beku- </div>
+                <div class="deskripsi">Memunculkan sejata jarak jauh berupa granat dan akan mengeluarkan suhu dingin ketika ia mati.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🎸</div>
+                <div class="nama">Musisi</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: banjo </div>
+                <div class="deskripsi">Menggunakan alat musik bajo untuk memberikan efek heal kepada rekan tim. Dan tidak ada kemampuan sepesil yang lain.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">♊</div>
+                <div class="nama">Penguasa</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Memberikan kesehatan extra sebanyak 200%</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">♋</div>
+                <div class="nama">Zombi</div>
+                <div class="statistik kekuatan"> Harga: 75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -skop- </div>
+                <div class="deskripsi">Menggunakan mayat untuk memulihkan kembali kesehatanya dan mengurangi jarak pandang musuh terhadap zombi.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">♉</div>
+                <div class="nama">Necromancer</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -skop- </div>
+                <div class="deskripsi">Musuh yang terbunuh dengan senjata jarak dekat akan memiliki 25% kesempatan untuk hidup kembali.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🔩</div>
+                <div class="nama">Konduktor</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Memunculkan coal untuk bahan bakar 2  dan memberikan  efek pasif kecepatan kepada kereta yang di kendarainya menjadi 10%.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">💰</div>
+                <div class="nama">Luky Man</div>
+                <div class="statistik kekuatan"> Harga: 50 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -skop- </div>
+                <div class="deskripsi">Melimpat gandakan uang sebanyak 1,5 tetapi memiliki peluang tersambar petir yang lebih mematikan sekitar 10%</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">🐴</div>
+                <div class="nama">Koboy</div>
+                <div class="statistik kekuatan"> Harga: 15 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -- </div>
+                <div class="deskripsi">Menggunakan senjata api dan menungagi kuda. Sangat kuat melawan kelompok musuh, namun kehabisan amunisi cukup cepat. Butuh manajemen barang yang baik.</div>
+            </div>
+            <div class="kartu-detail">
+                <div class="gambar">✝️</div>
+                <div class="nama">Pendeta</div>
+                <div class="statistik kekuatan"> Harga: 75 obligasi</div>
+                <div class="statistik keunggulan">💎 Senjata & pedang: -air suci dan salib- </div>
+                <div class="deskripsi">Kebal terhadap cuaca extrim dan kebal terhadap seragan petir mematikan.</div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+
+    <!-- ============== ✅ MODAL 2: KEAHLIAN KERETA ✅ ============== -->
+  <!-- ============== ✅ MODAL 2: KEAHLIAN KERETA - TEMPAT GAMBAR/VIDEO DIPERBESAR ✅ ============== -->
+<div id="modalKereta" class="modal">
+    <div class="modal-isi">
+        <span class="tombol-tutup">&times;</span>
+        <h2 class="judul-modal">🚂 Peningkatan & Keahlian Kereta</h2>
+        <div class="kisi-modal">
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="data:image/webp;base64,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" alt="Mesin Turbo">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Kereta Standar</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +60%</div>
+                    <div class="statistik keunggulan">💎 Harga: Tidak ada</div>
+                    <div  class="deskripsi">Default train yang pemain dapatkan secara geratis dan tidak ada kemampuan spesial yang di miliki kereta ini.</div>
+                </div>
+            </div>
+
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR (SIAP UNTUK VIDEO) -->
+                <div class="bagian-gambar-atas">
+                    <!-- Link video YouTube diubah menjadi tampilan pemutar video -->
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/c2wNHksKGH4" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Train 80 Second</div>
+                    <div class="statistik kekuatan">⚠️ Pertahanan: +80%</div>
+                    <div class="statistik keunggulan">💎 Harga: Tidak ada</div>
+                    <div class="deskripsi">Diberikan kepada pemain yang telah berpartisipasi pada acara event "Stranger Things"</div>
+                </div>
+            </div>
+		</div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://th.bing.com/th/id/OIP.VWL6haGrS825hNe3URVwoAHaEK?w=276&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Kereta Presiden</div>
+                    <div class="statistik kekuatan">⚠️ Kapasitas: +70%</div>
+                    <div class="statistik keunggulan">💎 Harga: 250 bons</div>
+                    <div class="deskripsi">Kereta ini dapat menyerap jiwa setiap musuh yang di bunuh oleh pemain, dan kemudian di jadikan alat untuk memangil arwah sang presiden dengan syarat mengisi parameter souls.</div>
+                </div>
+            </div>
+
+
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKKlZw6f7bMCV5VKjBBBPO1DFHFgFTfsVGF5Yhr2R&s" alt="Mesin Turbo">
+                    
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Kereta YEAT</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +70%</div>
+                    <div class="statistik keunggulan">💎 Harga: Tidak ada</div>
+                    <div class="deskripsi">Diberikan kepada pemain yang telah berpartisipasi pada acara "yeat" Kereta ini memiliki kemampuan untuk memnagil anomali yang di sebut "krokodil"</div>
+                    <div class="kartu-detail">
+                    
+                    
+                    
+                    
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJx99gFTmlzsrpiYEiNPex-stYFATn85I4gw&s" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Kereta Natal</div>
+                    <div class="statistik kekuatan">⚠️ Kapasitas dan kecepatan: Infinity </div>
+                    <div class="statistik keunggulan">💎 Harga: 300 Bons</div>
+                    <div class="deskripsi">Kereta ini tidak membutuhkan bahan bakar seperti kereta lain, selain itu kereta ini memiliki kemampuan untuk memberikan pemain hadiah natal yang berisikan bebagai alat dan bahan yang berguna nantinya dengan syarat membakar sejumlah coal.</div>
+                </div>
+            </div>
+
+<div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.B2gEabeLEtYw8biqaggp6QHaGg?pid=ImgDet&w=204&h=178&c=7&dpr=2&o=7&rm=3" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Kereta Penumpang</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +78%</div>
+                    <div class="statistik keunggulan">💎 Harga: 250 bons</div>
+                    <div class="deskripsi">Memperbesar runag bagi para pemain untuk bergabung tanpa memenuhi gerbong. Memungkinkan kamu membawa lebih banyak menumpang.</div>
+                </div>
+            </div>
+            
+<div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="data:image/webp;base64,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" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">GHOST Train</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +75%</div>
+                    <div class="statistik keunggulan">💎 Harga: 300 bons</div>
+                    <div class="deskripsi">Setiap musuh yang di bunuh di dekat kereta ini akan memiliki 25% kesempatan untuk bangkit kembali dan menjadi allay/tim dari para pemain.</div>
+                </div>
+            </div>
+
+                    <div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.TYwfhLkRv_X-4o9ePMyiTgHaFW?pid=ImgDet&w=204&h=147&c=7&dpr=2&o=7&rm=3" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Kereta Lapis Baja</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +60%</div>
+                    <div class="statistik keunggulan">💎 Harga: 275 bons</div>
+                    <div class="deskripsi">Kereta ini kebal terhadap seragan peluru tetapi sangat lambat. Selain itu kereta ini dilengkapi oleh 2 senjata yang berada di kanan dan kiri kereta.</div>
+                </div>
+            </div>
+
+<div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://static.deltiasgaming.com/2025/05/gold-1-800x600.png" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">COW Train</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +60%</div>
+                    <div class="statistik keunggulan">💎 Harga: 225 Bons</div>
+                    <div class="deskripsi">Memperbesar ruang penyimpanan dan kapasitas daya. Memungkinkan kamu membawa lebih banyak bahan bakar, makanan, dan senjata untuk perjalanan jauh.</div>
+                </div>
+            </div>
+
+<div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://th.bing.com/th/id/OIP.CprJXP88NDEnGT0wGKF7_gHaEK?w=301&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">Drakula Train</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +75%</div>
+                    <div class="statistik keunggulan">💎 Harga: 300 bons</div>
+                    <div class="deskripsi">Kereta ini dapat memberikan extra healt kepada pemain yang membunuh musuh di dekat kereta drakula.</div>
+                </div>
+            </div>
+ 
+<div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://progameguides.com/wp-content/uploads/2026/01/Untitled-design-1-1.jpg?resize=1200%2C675" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">ICE Train</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +70%</div>
+                    <div class="statistik keunggulan">💎 harga: 300 bons</div>
+                    <div class="deskripsi">Kereta ini dapat membekukan musuh di dekat kereta ini. Kereta ini sangat menarik dan sangat bermanfaat untuk di beli karna kereta ini akan membekukan setaip musuh yang berani mendekat.</div>
+                </div>
+            </div>
+
+
+
+
+<div class="kartu-detail">
+                <!-- ✅ BAGIAN MEDIA: DIPERBESAR BESAR & LEBAR -->
+                <div class="bagian-gambar-atas">
+                    <img src="https://th.bing.com/th/id/OIP.cVXKk646w55Z1w_2LdV3rgHaFj?w=242&h=182&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Generator Besar">
+                </div>
+                <!-- ✅ BAGIAN TEKS -->
+                <div class="bagian-teks">
+                    <div class="nama">GOLD Train</div>
+                    <div class="statistik kekuatan">⚠️ Kecepatan: +60%</div>
+                    <div class="statistik keunggulan">💎 Harga: 250 bons</div>
+                    <div class="deskripsi">Sama seperti kereta default, tetapi ia terbuat dari emas dan kokoh. "Tidak disarankan untuk di beli" Kereta ini hanya disarankan untuk flexsing.</div>
+                </div>
+            </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<style>
+/<style>
+/* === BAGIAN KEAHLIAN KERETA - TEMPAT GAMBAR & VIDEO DIPERBESAR === */
+#modalKereta .kisi-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Jarak antar kartu diperbesar */
+    padding: 15px;
+}
+
+#modalKereta .kartu-detail {
+    display: flex;
+    flex-direction: column; /* ✅ Susunan: Gambar di atas, teks di bawah */
+    background-color: #000000; /* Latar belakang HITAM PEKAT */
+    border: 3px solid #660000; /* Garis tepi MERAH GELAP */
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    min-height: 500px; /* ✅ Tinggi kartu diperbesar sangat besar */
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Efek saat disentuh mouse: memancarkan cahaya MERAH TERANG */
+#modalKereta .kartu-detail:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 25px #ff0000, 0 0 50px rgba(255, 0, 0, 0.6);
+    transform: scale(1.008);
+}
+
+/* ✅ BAGIAN GAMBAR / VIDEO: LEBAR DIPERKECIL */
+#modalKereta .bagian-gambar-atas {
+    width: 60%; /* ✅ Lebar diperkecil dari 100% menjadi 60% */
+    height: 350px; /* ✅ TINGGI TETAP BESAR */
+    margin: 0 auto 20px auto; /* ✅ Posisi di tengah */
+    background-color: #0a0000;
+    border: 2px solid #880000;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Agar gambar/video tidak keluar kotak */
+}
+
+/* Pengaturan tampilan Gambar */
+#modalKereta .bagian-gambar-atas img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ Gambar memenuhi kotak dengan rapi */
+    object-position: center;
+}
+
+/* Pengaturan tampilan Video YouTube */
+#modalKereta .bagian-gambar-atas iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#modalKereta .kartu-detail:hover .bagian-gambar-atas {
+    border-color: #ff4444;
+    background-color: #1a0000;
+}
+
+/* ✅ BAGIAN TEKS / DATA */
+#modalKereta .bagian-teks {
+    width: 100%;
+    padding: 15px;
+    background-color: #080808;
+    border-radius: 6px;
+    border-top: 2px solid #ff2222;
+    box-sizing: border-box;
+}
+
+/* JUDUL */
+#modalKereta .judul-modal {
+    color: #ff0000 !important;
+    font-weight: 900 !important;
+    font-size: 34px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #ff0000;
+    margin: 15px 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* WARNA & UKURAN TEKS SESUAI TEMA */
+#modalKereta .nama {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #ff0000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#modalKereta .statistik {
+    font-size: 17px;
+    margin: 8px 0;
+    color: #ff4444;
+    font-weight: 500;
+}
+
+/* ✅ BAGIAN DESKRIPSI DIPERBARUI UNTUK DAPAT DIBACA DENGAN JELAS */
+#modalKereta .deskripsi {
+    font-size: 17px; /* Sedikit diperbesar */
+    color: #ff6666; /* Warna dipercerah agar kontras dengan latar */
+    margin-top: 12px;
+    line-height: 1.7; /* Jarak antar baris lebih renggang */
+    background-color: #110000;
+    padding: 15px; /* Ruang dalam diperbanyak */
+    border-radius: 5px;
+    border-top: 1px solid #660000;
+    text-align: justify; /* Teks rata kanan-kiri agar rapi */
+    font-weight: 400; /* Ketebalan huruf pas */
+}
+
+#modalKereta .tombol-tutup {
+    color: #ff0000;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 8px #ff0000;
+}
+
+/* ✅ RESPONSIF: Tetap rapi di HP */
+@media (max-width: 768px) {
+    #modalKereta .bagian-gambar-atas {
+        width: 80%; /* ✅ Di HP, lebar sedikit lebih besar tapi tetap tidak penuh */
+        height: 220px; /* Ukuran lebih kecil di HP tapi tetap besar */
+    }
+    #modalKereta .judul-modal {
+        font-size: 24px;
+    }
+    #modalKereta .deskripsi {
+        font-size: 16px; /* Ukuran pas di layar kecil */
+        line-height: 1.6;
+    }
+}
+/* === SELESAI === */
+</style>
+</style>
+
+
+
+
+    <!-- ============== ✅ MODAL 3: SENJATA & ALAT ✅ ============== -->
+ <!-- ============== ✅ MODAL PILIHAN SENJATA - LEBAR PENUH & SIAP GAMBAR ✅ ============== -->
+<div id="modalSenjata" class="modal">
+    <div class="modal-isi">
+        <span class="tombol-tutup">&times;</span>
+        <h2 class="judul-modal">⚔️ Pilihan Senjata & Persenjataan</h2>
+        <div class="kisi-modal">
+        
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://th.bing.com/th/id/OIP.waMUeVNBtTH2QDcDGKejPAAAAA?w=177&h=140&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Tesla GUN</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐⭐⭐⭐⭐ (9/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: Sangat Cepat</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Boros</div>
+                    <div class="deskripsi">
+                     Senjata khus yang amat kuat dengan kerusakan 75%, senjata ini hanya bisa di dapatkan dengan mengaktifkan raja nikolatesla, dengan tingkat kesulitan sedang. Senjata ini hanya dapat di isi ulang degan percikan petir yang bersal dari botol ajaib yaitu botol suci, yang ketika di lempar akan memberikan kejutan listrik. Senjata ini juga dapat berguna membunuh musuh dengan jumah banyak dan sangat di sarankan untuk memperoleh senjata ini.
+                    </div>
+                </div>
+            </div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://th.bing.com/th/id/OIP.wWNwRg6upzgU47e_1XsZGwHaEK?w=321&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Meriam Putar Berat</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐⭐⭐ (7/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: Sangat Cepat</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Sedang</div>
+                    <div class="deskripsi">
+                        Senjata standar untuk pertempuran jarak menengah. Mampu menembakkan rentetan peluru besi secara terus menerus. 
+                        Sangat efektif untuk menghancurkan kendaraan musuh yang tidak berlapis baja tebal. Mudah dirawat dan amunisinya mudah ditemukan di mana saja.
+                    </div>
+                </div>
+            </div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://th.bing.com/th/id/OIP.TCL3zrF7efO_wSLai7M5gwAAAA?w=278&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Pistol</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐ (4/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: lambat</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Sedang</div>
+                    <div class="deskripsi">
+                        Senjata standar untuk pertempuran jarak menengah. Mampu menembakkan peluru degan kerusakab 15%. Selain itu senjata ini sangat mudah di dapatkan dan murah untuk di beli, cocok untuk starter tools.
+                    </div>
+                </div>
+            </div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://th.bing.com/th/id/OIP.QWoddk92QESyANze1-o4HQHaD7?w=307&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Pistol kotak </div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐(5/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: sedang</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Sedang</div>
+                    <div class="deskripsi">
+                         Senjata standar untuk pertempuran jarak menengah. Mampu menembakkan peluru degan kerusakab 15%. Selain itu senjata ini sangat mudah di dapatkan dan murah untuk di beli, cocok untuk starter tools.
+                    </div>
+                </div>
+            </div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://techwiser.com/wp-content/uploads/2025/04/sawed-off-shotgun-dead-rails.webp" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Double Shotgun</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐⭐⭐ (7/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: Sedang</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Sedang</div>
+                    <div class="deskripsi">
+                        Senjata standar untuk pertempuran jarak dekat. Mampu menumbangkan 1 musuh deggan jarak yang sangat dekat karna kerusakan nya 65% saangat berguna untuk melawan zoombi standar. 
+                    </div>
+                </div>
+            </div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://th.bing.com/th/id/OIP.9YEoLrIr_PI1VJx87AtCegHaEr?w=258&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Gold shotgun</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐⭐⭐ (7/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: Sangat Cepat</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Sedang</div>
+                    <div class="deskripsi">
+                        Senjata standar untuk pertempuran jarak menengah. Mampu menembakkan peluru dengan kerusakan lebih besar 45% sangat cocok digunakan untuk melawan musuh yang tinkat kesulitan yang berat seperti werewolf.
+                    </div>
+                </div>
+            </div>
+ <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://th.bing.com/th/id/OIP.3796VZq_RJlYN7ZIo9_nuwHaEK?w=296&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Pisau vampir</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐⭐⭐⭐ (8/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: Sangat Cepat</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Tidak ada</div>
+                    <div class="deskripsi">
+                        Senjata standar untuk pertempuran jarak dekat. Mampu memberikan extra healt bagi pemain yang menggunakan nya dengan akurasi dan kecepatan yang sangat cepat, senjata ini disarankan di kombinasikan dengan klas vampir.
+                    </div>
+                </div>
+            </div>
+             <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.A7c3gwTfAGeIzdyyRS90cgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Meriam kecil</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐⭐⭐ (7/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: lambat</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Sedang</div>
+                    <div class="deskripsi">
+                        Senjata standar untuk pertempuran jarak dekat. Mampu menembakkan peluru degan area yang luas dan dengan kekuatan cukup besar sekitar 60%, tapi sayang nya senjata ini di drop dari musuh yang memagang senjata ini, jadi harus didapatkan secara khusus.
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN DI SINI -->
+                    <img src="data:image/jpeg;base64,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" alt="Meriam Putar Berat">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Metal ShotGUN</div>
+                    <div class="statistik kekuatan">💥 Kekuatan Serangan: ⭐⭐⭐⭐⭐⭐⭐ (7/10)</div>
+                    <div class="statistik keunggulan">🎯 Akurasi: ⭐⭐⭐⭐⭐</div>
+                    <div class="statistik keunggulan">⚡ Kecepatan Tembak: Sedang</div>
+                    <div class="statistik keunggulan">🔋 Konsumsi Energi: Sedang</div>
+                    <div class="deskripsi">
+                        Senjata standar untuk pertempuran jarak menengah. Sama seperti gold shotgun tapi memiliki kekuatan/daya hancur lebih kecil daripada gold shotgun.
+                    </div>
+                </div>
+            </div>
+           
+                    </div>
+                </div>
+            </div>
+       
+
+<style>
+/* === BAGIAN PILIHAN SENJATA - LEBAR PENUH & SIAP GAMBAR === */
+#modalSenjata .kisi-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Jarak antar kartu */
+    padding: 10px;
+}
+
+#modalSenjata .kartu-detail {
+    display: flex;
+    flex-direction: row; /* ✅ Susunan: Kiri=Gambar, Kanan=Data */
+    background-color: #000000;
+    border: 3px solid #660000;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%; /* ✅ Lebar penuh layar */
+    min-height: 350px; /* ✅ Tinggi diperbesar untuk muat banyak data */
+    box-sizing: border-box;
+    align-items: stretch; /* ✅ Sama tinggi */
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    gap: 20px; /* Jarak antara kolom gambar dan data */
+}
+
+/* Efek menyala merah saat disentuh */
+#modalSenjata .kartu-detail:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255, 0, 0, 0.6);
+    transform: scale(1.008);
+}
+
+/* ✅ KOLOM KIRI: KHUSUS GAMBAR (LEBAR BESAR) */
+#modalSenjata .kolom-gambar {
+    width: 45%; /* ✅ Lebar hampir setengah layar */
+    background-color: #0a0000;
+    border: 2px solid #880000;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Agar gambar tidak keluar kotak */
+    min-height: 100%;
+}
+
+/* Gaya jika pakai Ikon/Simbol */
+#modalSenjata .ikon-gambar {
+    font-size: 80px;
+    color: #ff2222;
+    filter: drop-shadow(0 0 10px #ff0000);
+}
+
+/* Gaya jika pakai Gambar File */
+#modalSenjata .kolom-gambar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ Gambar pas dan rapi */
+    object-position: center;
+}
+
+#modalSenjata .kartu-detail:hover .kolom-gambar {
+    border-color: #ff4444;
+    background-color: #1a0000;
+}
+
+/* ✅ KOLOM KANAN: KHUSUS DATA & INFORMASI */
+#modalSenjata .kolom-data {
+    width: 55%; /* ✅ Sisa lebar untuk teks/data */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; /* ✅ Teks rata kiri agar mudah dibaca */
+    padding: 15px;
+    background-color: #080808;
+    border-radius: 6px;
+    border-left: 3px solid #ff2222;
+}
+
+/* === TEKS & DATA === */
+#modalSenjata .judul-modal {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 34px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+#modalSenjata .nama {
+    font-weight: bold;
+    font-size: 24px; /* ✅ Tulisan nama besar */
+    margin-bottom: 12px;
+    color: #ff1111;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#modalSenjata .statistik {
+    font-size: 17px; /* ✅ Ukuran data jelas */
+    margin: 6px 0;
+    color: #ff5555;
+    font-weight: 500;
+}
+
+#modalSenjata .deskripsi {
+    font-size: 16px; /* ✅ Tulisan deskripsi nyaman dibaca */
+    color: #dd4444;
+    margin-top: 15px;
+    line-height: 1.6; /* ✅ Jarak baris renggang */
+    background-color: #110000;
+    padding: 12px;
+    border-radius: 5px;
+    border-top: 1px solid #660000;
+}
+
+#modalSenjata .tombol-tutup {
+    color: #ff0000;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 8px #ff0000;
+}
+
+/* ✅ RESPONSIF: Jika HP, susunan jadi atas-bawah */
+@media (max-width: 768px) {
+    #modalSenjata .kartu-detail {
+        flex-direction: column;
+    }
+    #modalSenjata .kolom-gambar,
+    #modalSenjata .kolom-data {
+        width: 100%;
+    }
+    #modalSenjata .kolom-gambar {
+        height: 200px;
+    }
+}
+/* === AKHIR BAGIAN PILIHAN SENJATA === */
+</style>
+
+
+    <!-- ============== ✅ MODAL DUNGEON (SUDAH ADA) ✅ ============== -->
+   <div id="modalDungeon" class="modal">
+    <div class="modal-isi">
+        <span class="tombol-tutup">&times;</span>
+        <h2 class="judul-modal">🌋 Pilihan Lokasi & Dungeon</h2>
+        <div class="kisi-modal">
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR BARU SUDAH DIMASUKKAN: Gurun Terbakar -->
+                    <img src="https://i.ytimg.com/vi/kmR9DziWQTY/sddefault.jpg" alt="Gurun Terbakar">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Gurun Terbakar</div>
+                    <div class="statistik kekuatan">⚠️ Tingkat Bahaya: ⭐⭐⭐⭐⭐ (5/10)</div>
+                    <div class="statistik keunggulan">💎 Hadiah Utama: Emas Murni & Bahan Pelindung</div>
+                    <div class="statistik keunggulan">🔥 Suhu Lingkungan: Sangat Panas</div>
+                    <div class="statistik keunggulan"></div>
+                    <div class="deskripsi">
+                        Area luas berpasir dengan suhu ekstrem yang dapat membakar pemain karna suhu yang panas. 
+                        Musuh banyak muncul di siang hari dalam kelompok kecil, namun sumber daya logam dan bahan bakar sangat melimpah di sini. Ada banyak musuh baru yang memiliki aura yang panas akibat adaptasi suhu panas.
+                    </div>
+                </div>
+            </div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR BARU SUDAH DIMASUKKAN: Hutan Mati -->
+                    <img src="https://th.bing.com/th/id/OIP.9TzOWY-4riRkm07V2zMJ9gHaEK?w=324&h=182&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Hutan Mati">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Mimpi Buruk/Nightmare</div>
+                    <div class="statistik kekuatan">⚠️ Tingkat Bahaya: ⭐⭐⭐⭐⭐⭐⭐⭐⭐ (9/10)</div>
+                    <div class="statistik keunggulan">💎 Hadiah Utama: Senjata Kuno & Ramuan Khusus</div>
+                    <div class="statistik keunggulan">🌫️ Kondisi: Berkabut & Lembap</div>
+                    <div class="statistik keunggulan">👁️ Visibilitas: Sangat Rendah</div>
+                    <div class="deskripsi">
+                        Rimbun dan gelap, sulit dilihat jarak jauh. Banyak jebakan akar dan musuh penyergap yang bersembunyi di balik pepohonan mati. 
+                        Barang jarang dan langka banyak tersembunyi di sini, namun risiko kehilangan kereta sangat besar jika tidak hati-hati.
+                    </div>
+                </div>
+            </div>
+
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR BARU SUDAH DIMASUKKAN: Puncak Beku -->
+                    <img src="https://th.bing.com/th/id/OIP.7AVFqFc6B6UBKrk3hOjMQQHaEJ?w=299&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Puncak Beku">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Deep Freeze</div>
+                    <div class="statistik kekuatan">⚠️ Tingkat Bahaya: ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (10/10)</div>
+                    <div class="statistik keunggulan">💎 Hadiah Utama: FREEZE TRAIN</div>
+                    <div class="statistik keunggulan">❄️ Suhu Lingkungan: Di Bawah Nol</div>
+                    <div class="statistik keunggulan">🧊 Kondisi Jalur: Licin & Curam</div>
+                    <div class="deskripsi">
+                        Paling sulit dijangkau, suhu dingin yang ekstrem dapat membekukan mesin jika tidak ditingkatkan. 
+                        Hanya kereta dengan perlindungan maksimal yang bisa masuk ke area ini. Di puncak gunung ini tersimpan teknologi tertinggi yang bisa membuat keretamu tak terkalahkan.
+                        
+                        
+                    
+                    </div>
+                </div>
+            </div>
+            
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR BARU SUDAH DIMASUKKAN: Puncak Beku -->
+                    <img src="https://th.bing.com/th/id/OIP.mZciahhUHOdO0ssJXtpfJAAAAA?w=241&h=159&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Puncak Beku">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Bite Sized</div>
+                    <div class="statistik kekuatan">⚠️ Tingkat Bahaya: ⭐⭐⭐⭐⭐⭐⭐⭐ (8/10)</div>
+                    <div class="statistik keunggulan">💎 Hadiah Utama: Senjata baru</div>
+                    <div class="statistik keunggulan">❄️ Suhu Lingkungan: Di Bawah -70C</div>
+                    <div class="statistik keunggulan">🧊 Kondisi Jalur: Licin & Curam</div>
+                    <div class="deskripsi">
+                        Paling sulit dijangkau, suhu dingin yang ekstrem dapat membekukan mesin jika tidak ditingkatkan. 
+                        Hanya kereta dengan perlindungan maksimal yang bisa masuk ke area ini. Di puncak gunung ini musuh-musuh yang dapat membekuan siapa saja. Oleh sebap itu pemaain di wajib kan membawa obor sebagai alternatif penhangat
+                        
+                        
+                    
+                    </div>
+                </div>
+            </div>
+            
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR BARU SUDAH DIMASUKKAN: Puncak Beku -->
+                    <img src="https://th.bing.com/th/id/OIP.vABVwIt4LOUnqeo554aUEAHaEK?w=324&h=182&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Puncak Beku">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Usual</div>
+                    <div class="statistik kekuatan">⚠️ Tingkat Bahaya: ⭐⭐⭐ (3/10)</div>
+                    <div class="statistik keunggulan">💎 Hadiah Utama: Bons/mata uang yang berlimpah</div>
+                    <div class="statistik keunggulan"> Suhu Lingkungan: Di Bawah normal</div>
+                  
+                    <div class="deskripsi">
+                      Mudah di taklukan oleh pemain yang berpegalaman, sekaligus sebagai peta para pemain pemula/default map.
+                        
+                        
+                    
+                    </div>
+                </div>
+            </div>
+             
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR BARU SUDAH DIMASUKKAN: Puncak Beku -->
+                    <img src="https://th.bing.com/th/id/OIP.GQBoj_HqWB21WgpreLrgTgHaEK?w=288&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Puncak Beku">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI -->
+                <div class="kolom-data">
+                    <div class="nama">Lintasan Abadi</div>
+                    <div class="statistik kekuatan">⚠️ Tingkat Bahaya: ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (10/10)</div>
+                    <div class="statistik keunggulan">💎 Hadiah Utama: Tidak ada</div>
+                    <div class="statistik keunggulan">Suhu Lingkungan: Normal</div>
+                    <div class="statistik keunggulan">🧊 Kondisi Jalur: Licin & Curam</div>
+                    <div class="deskripsi">
+                        Paling sulit dijangkau, banyak musuh baru dan berbahaya yang dan digunakan sebagai arena bertahan yang paling sulit bagi para pemain profesional.
+                        
+                        
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* === BAGIAN PILIHAN DUNGEON - LEBAR PENUH & SIAP GAMBAR === */
+#modalDungeon .kisi-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Jarak antar kartu */
+    padding: 10px;
+}
+
+#modalDungeon .kartu-detail {
+    display: flex;
+    flex-direction: row; /* ✅ Susunan: Kiri=Gambar, Kanan=Data */
+    background-color: #000000;
+    border: 3px solid #660000;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%; /* ✅ Lebar penuh layar */
+    min-height: 350px; /* ✅ Tinggi diperbesar untuk muat banyak data */
+    box-sizing: border-box;
+    align-items: stretch; /* ✅ Sama tinggi */
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    gap: 20px; /* Jarak antara kolom gambar dan data */
+}
+
+/* Efek menyala merah saat disentuh */
+#modalDungeon .kartu-detail:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255, 0, 0, 0.6);
+    transform: scale(1.008);
+}
+
+/* ✅ KOLOM KIRI: KHUSUS GAMBAR (LEBAR BESAR) */
+#modalDungeon .kolom-gambar {
+    width: 45%; /* ✅ Lebar hampir setengah layar */
+    background-color: #0a0000;
+    border: 2px solid #880000;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Agar gambar tidak keluar kotak */
+    min-height: 100%;
+}
+
+/* Gaya jika pakai Ikon/Simbol */
+#modalDungeon .ikon-gambar {
+    font-size: 80px;
+    color: #ff2222;
+    filter: drop-shadow(0 0 10px #ff0000);
+}
+
+/* Gaya jika pakai Gambar File */
+#modalDungeon .kolom-gambar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ Gambar pas dan rapi */
+    object-position: center;
+}
+
+#modalDungeon .kartu-detail:hover .kolom-gambar {
+    border-color: #ff4444;
+    background-color: #1a0000;
+}
+
+/* ✅ KOLOM KANAN: KHUSUS DATA & INFORMASI */
+#modalDungeon .kolom-data {
+    width: 55%; /* ✅ Sisa lebar untuk teks/data */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; /* ✅ Teks rata kiri agar mudah dibaca */
+    padding: 15px;
+    background-color: #080808;
+    border-radius: 6px;
+    border-left: 3px solid #ff2222;
+}
+
+/* === TEKS & DATA === */
+#modalDungeon .judul-modal {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 34px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+#modalDungeon .nama {
+    font-weight: bold;
+    font-size: 24px; /* ✅ Tulisan nama besar */
+    margin-bottom: 12px;
+    color: #ff1111;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#modalDungeon .statistik {
+    font-size: 17px; /* ✅ Ukuran data jelas */
+    margin: 6px 0;
+    color: #ff5555;
+    font-weight: 500;
+}
+
+#modalDungeon .deskripsi {
+    font-size: 16px; /* ✅ Tulisan deskripsi nyaman dibaca */
+    color: #dd4444;
+    margin-top: 15px;
+    line-height: 1.6; /* ✅ Jarak baris renggang */
+    background-color: #110000;
+    padding: 12px;
+    border-radius: 5px;
+    border-top: 1px solid #660000;
+}
+
+#modalDungeon .tombol-tutup {
+    color: #ff0000;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 8px #ff0000;
+}
+
+/* ✅ RESPONSIF: Jika HP, susunan jadi atas-bawah */
+@media (max-width: 768px) {
+    #modalDungeon .kartu-detail {
+        flex-direction: column;
+    }
+    #modalDungeon .kolom-gambar,
+    #modalDungeon .kolom-data {
+        width: 100%;
+    }
+    #modalDungeon .kolom-gambar {
+        height: 200px;
+    }
+}
+/* === AKHIR BAGIAN PILIHAN DUNGEON === */
+</style>
+
+
+
+    <!-- ============== ✅ MODAL MISI SAMPINGAN (BARU DITAMBAHKAN) ✅ ============== -->
+    <!-- ============== ✅ MODAL MISI SAMPINGAN - LEBAR PENUH & SIAP GAMBAR ✅ ============== -->
+20260530 14:00:36 || <div id="modalMisi" class="modal">
+    <div class="modal-isi">
+        <span class="tombol-tutup">&times;</span>
+        <h2 class="judul-modal">📋 Misi Sampingan & Tugas Tambahan</h2>
+        <div class="kisi-modal">
+            <div class="kartu-detail">
+                <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                <div class="kolom-gambar">
+                    <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                    <img src="data:image/jpeg;base64,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" alt="Pengiriman Pasokan Rahasia" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+
+                <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                <div class="kolom-data">
+                    <div class="nama">Jual tesla Head</div>
+                    <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐⭐⭐⭐⭐⭐ (8/10)</div>
+                    <div class="statistik keunggulan">📍 Lokasi: Jalur Timur - Kota Tepi Padang</div>
+                    <div class="statistik keunggulan">🎁 Hadiah: Uang Tunai</div>
+                    <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                    <div class="deskripsi">
+                        Membawa kepala tesla yang sudah terpengal lalu menjual nya kepada pria misterius yang ada di stasiul.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9VGClGRej-T2xMwmwI_U3YIgdoyM8y3NhTA&s" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Mencuri Kode brangkas</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐⭐ (4/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi: Desa zoombi</div>
+               
+                        <div class="statistik keunggulan">🎁 Hadiah: Uang Tunai + emas dan perak</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                           Mencuri dan membunuh sebanyak mungkin zoombi ini akam membuat player semakin kaya, karna ia adalh zoombi penjaga bank yang memiliki kode rahasia untuk menyimpan emas dan harta.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="https://th.bing.com/th/id/OIP.nB_cqTwzoUsUfJ2zTDRrmwHaEK?w=283&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Bunuh kapten prescot</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐⭐⭐ (5/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi: pangkalan bandit</div>
+                        
+                        <div class="statistik keunggulan">🎁 Hadiah: Uang Tunai + Suku Cadang Mesin</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                          bekerjasama degan bandit, mencuri uang dan membunuh prajurit presiden untuk dan dijadikan budak untuk pertempuran melawan zoombi, membuat ia di berikan $150 dolar untuk membunuhnya.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="data:image/webp;base64,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" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Bunuh lebih dari 300 musuh</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐⭐ (4/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi: Jalur Timur - Kota Tepi Padang</div>
+                        <div class="statistik keunggulan">🎁 Hadiah: Uang Tunai + 40 obligasi</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                           Tugas ini deberikan kepada mereka yang telah berpetualang di game ini degan waktu yang lama, membunuh 300 musuh selama permainan memberikan pemain pengalaman dan sekaligus hadiah berupa obligasi tertulis di mata uang game.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="https://th.bing.com/th/id/OIP.QWbKs-PkivVBXzLloKp8MAHaEK?w=288&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Bunuh bos goliat meriam</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐⭐⭐⭐⭐ (7/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi: pankalan bandit </div>
+     
+                        <div class="statistik keunggulan">🎁 Hadiah: Uang Tunai + pedang  X kalibur</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                            Membawa MAYAT bos ini kamu akan diberikan adiah berupa pedag yang bisa memancarkan kekuatan petir ketika menyerang dengan kerusakan dan demage yang amat besar. Kamu akan degan mudah memenagkan pertempuran jarak dekat
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="https://th.bing.com/th/id/OIP.hyr8DcGw67hvvxXErS0M2gHaEK?w=288&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Selamatkan diri anda ke mexsiko sebanyak 5x</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐⭐⭐⭐⭐⭐⭐ (9/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi: Ikuri jalur kereta</div>
+                        <div class="statistik keunggulan">🎁 Hadiah: Uang Tunai + lencana kebebasan</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                           Larilah sejauh mungkin sampai kamu menemukan jembatan yang akan terbuka untuk menyelamatkan kamu dan, kamu akan memperoleh lencana kebebasan.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="https://th.bing.com/th/id/OIP.s94g7EbEboW3Ipl_ta9OiQHaEK?w=252&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Bunuh zoombi armor 20x</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐ (3/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi: Di setiap kota terbengkalai/ markas bandit</div>
+                      
+                        <div class="statistik keunggulan">🎁 Hadiah: free metal armor</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                           Bunuh lah ia sebanyak 20x dan kamu akan memperoleh armor baja dan tentunya lencana ketanguhan. Zoombi ini saya sarankan untuk menembak nya saja dari jarak jauh karna seragan mele tidak akan berpegaruh. Pastikan anda memberikan seragan tepat ke kepala nya karna itu adalah kelemahan dari zoombi armor.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="https://th.bing.com/th/id/OIP.QKCVrbREdgTucTB6AaOy5wHaEK?w=294&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Jinakan anjing/srigala liar</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐ (2/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi:hutan srigala</div>
+                       
+                        <div class="statistik keunggulan">🎁 Hadiah: tidak ada</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                            Gunakan lah kelas gembala, untuk menjinakan srigala/anjing ini dan memperoleh lencana dan uang obligasi sebanyak 40 obligasi.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="kisi-modal">
+                <div class="kartu-detail">
+                    <!-- ✅ BAGIAN KIRI: TEMPAT GAMBAR (LEBAR BESAR) -->
+                    <div class="kolom-gambar">
+                        <!-- ✅ GAMBAR SUDAH DIMASUKKAN, IKON DIHAPUS -->
+                        <img src="https://th.bing.com/th/id/OIP.UZKorIX97mfqZ5dbb-0NjAHaEK?w=294&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3">
+                    </div>
+
+                    <!-- ✅ BAGIAN KANAN: TEMPAT DATA & INFORMASI MISI -->
+                    <div class="kolom-data">
+                        <div class="nama">Tambang berlian</div>
+                        <div class="statistik kekuatan">⚠️ Tingkat Kesulitan: ⭐⭐⭐⭐ (4/10)</div>
+                        <div class="statistik keunggulan">📍 Lokasi: Goa di tengah gurun Padang</div>
+            
+                        <div class="statistik keunggulan">🎁 Hadiah: Uang Tunai + Suku Cadang Mesin</div>
+                        <div class="statistik keunggulan">📌 Status: Tersedia</div>
+                        <div class="deskripsi">
+                            Membawa kotak berisi suplai barang berharga berupa emas,berlian dan perak akan memberikan kelimatan uang berganda, di sarankan menggunakan klas penambag untuk memperoleh hasil tambang yang berharga.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+        
+              
+             
+
+220260528 08:42:39 || <style>
+/* === BAGIAN MISI SAMPINGAN - LEBAR PENUH & SIAP GAMBAR === */
+#modalMisi .kisi-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Jarak antar kartu */
+    padding: 10px;
+}
+
+#modalMisi .kartu-detail {
+    display: flex;
+    flex-direction: row; /* ✅ Susunan: Kiri=Gambar, Kanan=Data */
+    background-color: #000000;
+    border: 3px solid #660000;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%; /* ✅ Lebar penuh layar */
+    min-height: 280px; /* ✅ Tinggi kartu diperkecil menyesuaikan gambar */
+    box-sizing: border-box;
+    align-items: center; /* ✅ Posisikan elemen di tengah vertikal */
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+    gap: 20px; /* Jarak antara kolom gambar dan data */
+}
+
+/* Efek menyala merah saat disentuh */
+#modalMisi .kartu-detail:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255, 0, 0, 0.6);
+    transform: scale(1.008);
+}
+
+/* ✅ KOLOM KIRI: UKURAN GAMBAR SUDAH DIPERKECIL */
+#modalMisi .kolom-gambar {
+    width: 220px; /* ✅ Lebar diperkecil (dari 45% jadi ukuran tetap kecil) */
+    height: 180px; /* ✅ Tinggi diperkecil */
+    flex-shrink: 0; /* ✅ Jangan biarkan ukurannya berubah */
+    background-color: #000000;
+    border: 2px solid #ff0000;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: inset 0 0 12px rgba(255, 0, 0, 0.4), 0 0 5px rgba(255, 0, 0, 0.2);
+}
+
+/* ✅ Lapisan latar di dalam kolom gambar */
+#modalMisi .kolom-gambar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0a0a0a;
+    z-index: 1;
+}
+
+/* Gaya jika pakai Ikon/Simbol */
+#modalMisi .ikon-gambar {
+    font-size: 50px; /* ✅ Ukuran ikon juga diperkecil menyesuaikan kotak */
+    color: #ff2222;
+    filter: drop-shadow(0 0 10px #ff0000);
+    z-index: 2;
+    position: relative;
+}
+
+/* ✅ Gaya jika pakai Gambar File */
+#modalMisi .kolom-gambar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+    z-index: 2;
+    filter: brightness(0.9) contrast(1.15) saturate(1.1);
+    transition: all 0.3s ease;
+}
+
+/* ✅ Efek saat kartu disentuh */
+#modalMisi .kartu-detail:hover .kolom-gambar {
+    border-color: #ff3333;
+    background-color: #050000;
+    box-shadow: inset 0 0 18px rgba(255, 0, 0, 0.6), 0 0 12px rgba(255, 0, 0, 0.4);
+}
+
+#modalMisi .kartu-detail:hover .kolom-gambar img {
+    filter: brightness(1) contrast(1.2) saturate(1.25);
+}
+
+/* ✅ KOLOM KANAN: DATA MENGISI SISA LEBAR */
+#modalMisi .kolom-data {
+    flex: 1; /* ✅ Mengisi sisa ruang yang ada */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 15px;
+    background-color: #080808;
+    border-radius: 6px;
+    border-left: 3px solid #ff2222;
+    height: 100%; /* ✅ Tinggi menyesuaikan gambar */
+}
+
+/* === TEKS & DATA === */
+#modalMisi .judul-modal {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 34px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+#modalMisi .nama {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #ff1111;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#modalMisi .statistik {
+    font-size: 17px;
+    margin: 6px 0;
+    color: #ff5555;
+    font-weight: 500;
+}
+
+#modalMisi .deskripsi {
+    font-size: 16px;
+    color: #dd4444;
+    margin-top: 15px;
+    line-height: 1.6;
+    background-color: #110000;
+    padding: 12px;
+    border-radius: 5px;
+    border-top: 1px solid #660000;
+}
+
+#modalMisi .tombol-tutup {
+    color: #ff0000;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 8px #ff0000;
+}
+
+/* ✅ RESPONSIF: Jika HP, susunan jadi atas-bawah & gambar lebar penuh */
+@media (max-width: 768px) {
+    #modalMisi .kartu-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: auto;
+    }
+    #modalMisi .kolom-gambar {
+        width: 100%;
+        max-width: 280px; /* ✅ Di HP gambar tetap kecil & rapi */
+        height: 180px;
+    }
+    #modalMisi .kolom-data {
+        width: 100%;
+        border-left: none;
+        border-top: 3px solid #ff2222;
+    }
+}
+/* === AKHIR BAGIAN MISI SAMPINGAN === */
+</style>
+    <!-- ============== ✅ MODAL SUMBER & REFERENSI (BARU DITAMBAHKAN) ✅ ============== -->
+
+<div id="modalSumber" class="modal">
+    <div class="modal-isi">
+        <span class="tombol-tutup">&times;</span>
+        <h2 class="judul-modal">komunitas death rails</h2>
+        <div class="kisi-modal">
+            <!-- ✅ ENTRI 1 -->
+            <div class="kartu-detail">
+                <div class="kolom-gambar">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/84j4VL6KRF4" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="kolom-data">
+                    <div class="nama">Tutorial: Cara Membuka Portal Rahasia</div>
+                    <div class="statistik kekuatan">🎥 Sumber: Video Panduan Resmi</div>
+                    <div class="statistik keunggulan">📌 Topik: Lokasi Rahasia & Akses Khusus</div>
+                    <div class="statistik keunggulan">⏱ Durasi: Singkat & Jelas</div>
+                    <div class="deskripsi">
+                        Video penjelasan lengkap dan mudah diikuti mengenai cara menemukan serta membuka Portal Rahasia di dalam dunia *Dead Rails*. 
+                        Di dalamnya dijelaskan langkah-langkah persiapan, lokasi tersembunyi, dan persyaratan khusus apa saja yang harus dipenuhi agar gerbang menuju wilayah rahasia tersebut dapat terbuka. 
+                        Sangat disarankan ditonton oleh penjelajah yang sudah memiliki perlengkapan lengkap dan siap menghadapi tantangan tingkat tinggi.
+                    </div>
+                </div>
+            </div>
+ 
+     <div class="kartu-detail">
+                <div class="kolom-gambar">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/c2wNHksKGH4" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="kolom-data">
+                    <div class="nama">Tutorial: Cara mendapatkan kerta di evet "stangers THINGS</div>
+                    <div class="statistik kekuatan">🎥 Sumber: Video Panduan Resmi</div>
+                    <div class="statistik keunggulan">📌 Topik: Lokasi Rahasia & Akses Khusus</div>
+                    <div class="statistik keunggulan">⏱ Durasi: Singkat & Jelas</div>
+                    <div class="deskripsi">
+                        Video penjelasan lengkap dan mudah diikuti mengenai cara memperoleh kereta terbaru dengan cara menyelesaikan evet "strangers things"
+                    </div>
+                </div>
+            </div>
+            
+            <div class="kartu-detail">
+                <div class="kolom-gambar">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/4A-pzTxnN4o" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="kolom-data">
+                    <div class="nama">Tutorial: Untuk para pemula</div>
+                    <div class="statistik kekuatan">🎥 Sumber: Video Panduan Resmi</div>
+                    <div class="statistik keunggulan">📌 Topik: Lokasi Rahasia & Akses Khusus</div>
+                    <div class="statistik keunggulan">⏱ Durasi: Singkat & Jelas</div>
+                    <div class="deskripsi">
+                        Video penjelasan lengkap dan mudah diikuti mengenai poin dan inti cara bermai game roblox detah rails, fidio ini di buat oleh yutuber animasi yang terkenal dalam kretatifitasnya dalam membuat animasi yang memili tektur dan garfik yang bagus dan menarik.
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+
+<style>
+/* === BAGIAN SUMBER & REFERENSI - LEBAR PENUH & SIAP GAMBAR === */
+#modalSumber .kisi-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Jarak antar kartu */
+    padding: 10px;
+}
+
+#modalSumber .kartu-detail {
+    display: flex;
+    flex-direction: column; /* ✅ Diubah jadi susunan atas-bawah agar gambar bisa melebar penuh */
+    background-color: #000000;
+    border: 3px solid #660000;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%; /* ✅ Lebar penuh layar */
+    min-height: 350px; /* ✅ Tinggi diperbesar untuk muat banyak data */
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    gap: 20px; /* Jarak antara gambar dan data */
+}
+
+/* Efek menyala merah saat disentuh */
+#modalSumber .kartu-detail:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255, 0, 0, 0.6);
+    transform: scale(1.008);
+}
+
+/* ✅ KOLOM KIRI: KHUSUS GAMBAR / VIDEO (DIBUAT MELEBAR PENUH) */
+#modalSumber .kolom-gambar {
+    width: 100%; /* ✅ Lebar penuh melebar memenuhi kartu */
+    height: 400px; /* ✅ Tinggi tetap besar agar gambar terlihat jelas */
+    background-color: #0a0000;
+    border: 2px solid #880000;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Agar gambar/video tidak keluar kotak */
+}
+
+/* Gaya jika pakai Ikon/Simbol */
+#modalSumber .ikon-gambar {
+    font-size: 80px;
+    color: #ff2222;
+    filter: drop-shadow(0 0 10px #ff0000);
+}
+
+/* Gaya jika pakai Gambar File atau Video */
+#modalSumber .kolom-gambar img,
+#modalSumber .kolom-gambar iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ Gambar/Video pas dan rapi memenuhi kotak */
+    border-radius: 4px;
+}
+
+#modalSumber .kartu-detail:hover .kolom-gambar {
+    border-color: #ff4444;
+    background-color: #1a0000;
+}
+
+/* ✅ KOLOM KANAN: KHUSUS DATA & INFORMASI */
+#modalSumber .kolom-data {
+    width: 100%; /* ✅ Lebar penuh sejajar dengan gambar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; /* ✅ Teks rata kiri agar mudah dibaca */
+    padding: 15px;
+    background-color: #080808;
+    border-radius: 6px;
+    border-top: 3px solid #ff2222; /* ✅ Garis pemisah di atas data */
+    box-sizing: border-box;
+}
+
+/* === TEKS & DATA === */
+#modalSumber .judul-modal {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 34px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+#modalSumber .nama {
+    font-weight: bold;
+    font-size: 24px; /* ✅ Tulisan nama besar */
+    margin-bottom: 12px;
+    color: #ff1111;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#modalSumber .statistik {
+    font-size: 17px; /* ✅ Ukuran data jelas */
+    margin: 6px 0;
+    color: #ff5555;
+    font-weight: 500;
+}
+
+#modalSumber .deskripsi {
+    font-size: 16px; /* ✅ Tulisan deskripsi nyaman dibaca */
+    color: #dd4444;
+    margin-top: 15px;
+    line-height: 1.6; /* ✅ Jarak baris renggang */
+    background-color: #110000;
+    padding: 12px;
+    border-radius: 5px;
+    border-top: 1px solid #660000;
+}
+
+#modalSumber .tombol-tutup {
+    color: #ff0000;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 8px #ff0000;
+}
+
+/* ✅ RESPONSIF: Tetap rapi di HP */
+@media (max-width: 768px) {
+    #modalSumber .kolom-gambar {
+        height: 220px; /* ✅ Tinggi gambar disesuaikan di HP */
+    }
+    #modalSumber .judul-modal {
+        font-size: 24px;
+    }
+}
+/* === AKHIR BAGIAN SUMBER & REFERENSI === */
+</style>
+
+    <!-- ============== ✅ KATEGORI HALAMAN UTAMA ✅ ============== -->
+    <section class="container" id="kategori">
+        <h2 class="judul-bagian">Kategori Panduan</h2>
+        <div class="kisi-kartu">
+            <!-- Kartu 1: Kelas Karakter -->
+            <div class="kartu" id="bukaKarakter">
+                <div class="ikon">⚔️</div>
+                <h3>Kelas Karakter</h3>
+                <p>Pahami keunggulan setiap kelas, cara membukanya menggunakan koin game, dan rekomendasi terbaik untuk pemula agar tidak salah pilih jalur.</p>
+            </div>
+
+            <!-- Kartu 2: Keahlian Kereta -->
+            <div class="kartu" id="bukaKereta">
+                <div class="ikon">🚂</div>
+                <h3>Keahlian Kereta</h3>
+                <p>Peningkatan kemampuan kereta kamu. Dari kecepatan hingga pertahanan. Ketahui modifikasi apa yang paling berguna saat melintasi zona berbahaya.</p>
+            </div>
+
+            <!-- Kartu 3: Pilihan Dungeon -->
+            <div class="kartu" id="bukaDungeon">
+                <div class="ikon">🌋</div>
+                <h3>Pilihan Dungeon</h3>
+                <p>Panduan memilih rute terbaik. Pelajari risiko dan hadiah di setiap lokasi. Jangan masuk ke tempat berbahaya dengan perlengkapan minim!</p>
+            </div>
+            
+            <!-- Kartu 4: Senjata & Alat -->
+            <div class="kartu" id="bukaSenjata">
+                <div class="ikon">🔫</div>
+                <h3>Senjata & Alat</h3>
+                <p>Daftar lengkap senjata jarak dekat dan jauh. Mana yang paling efektif melawan jenis musuh tertentu? Cari tahu cara mendapatkannya dengan cepat.</p>
+            </div>
+            
+            <div class="kartu" id="bukaMisi">
+                <div class="ikon">📜</div>
+                <h3>Misi Sampingan</h3>
+                <p>Cara tercepat mengumpulkan koin dan boons. Daftar misi mudah dengan hadiah besar untuk memperkuat karakter kamu di awal permainan.</p>
+            </div>
+            <div class="kartu" id="bukaSumber">
+                <div class="ikon">📺</div>
+                <h3>Sumber & Referensi</h3>
+                <p>Kumpulan panduan dari kreator konten berpengalaman. Pelajari strategi tingkat lanjut dari para ahli permainan ini.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============== TIPS ============== -->
+    <section class="bagian-tips" id="tips">
+        <div class="container">
+            <h2 class="judul-bagian">Tips Penting Bertahan Hidup</h2>
+            <ul class="daftar-tips">
+                <li><strong>⚠️ Pilihan Awal:</strong> Di awal permainan, pilihlah Bahan Bakar daripada Senjata. Perjalanan lebih jauh berarti lebih banyak peluang mencari barang bagus.</li>
+                <li><strong>❤️ Kerjasama Tim:</strong> Game ini sangat sulit dimainkan sendirian. Tetaplah bersama tim, berbagi sumber daya, dan tentukan kapan harus menyerang atau bertahan.</li>
+                <li><strong>💀 Satu Kesempatan:</strong> Ingat! Hanya ada satu nyawa. Jangan gegabah masuk ke ruangan baru sebelum memastikan kondisi aman.</li>
+                <li><strong>📈 Kembangkan Skill:</strong> Prioritaskan pembelian skill yang meningkatkan peluang mendapatkan barang langka daripada sekadar kerusakan senjata.</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============== TENTANG ============== -->
+    <section class="container" id="sumber">
+        <h2 class="judul-bagian">✨ Profil Developer</h2>
+        <div style="background: rgba(31, 31, 31, 0.85); padding: 2.5rem; border-radius: 12px; color: #f1f1f1; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+            
+            <!-- Kolom Gambar -->
+            <div style="flex: 1 1 250px; text-align: center;">
+                <img src="link-gambar-kamu.jpg" alt="Foto Profil Pembuat" style="width: 220px; height: 220px; object-fit: cover; border-radius: 50%; border: 4px solid #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);">
+            </div>
+
+            <!-- Kolom Keterangan Profil -->
+            <div style="flex: 2 1 400px; text-align: left;">
+                <h3 style="color: #ffcc00; font-size: 1.6rem; margin-bottom: 0.5rem; text-align: center;">🚀 George justin immanue;</h3>
+                <p style="font-style: italic; color: #bbbbbb; margin-bottom: 1.5rem; text-align: center;">Pengembang Web & Penggiat Komunitas Death Rails</p>
+                
+                <p style="line-height: 1.8; font-size: 1.05rem;">
+                    Halo! Saya adalah penggemar berat <strong style="color: #00ccff;">Death Rails</strong> sejak gim ini pertama kali hadir. Sejak pembaruan besar mengubah segalanya, saya melihat banyak teman sesama pemain merasa kebingungan, tertinggal, dan kesulitan mengejar kemajuan jika harus bermain sendiri.<br><br>
+                    Itulah alasan utama saya membangun tempat ini — bukan sekadar panduan biasa, tapi rumah kedua bagi para pejuang jalur rel. Saya ingin membuktikan satu hal penting: <em>kamu tidak perlu mengeluarkan uang sepeser pun untuk menjadi yang terhebat</em>. Dengan strategi tepat, ketekunan, dan panduan yang saya susun berdasarkan pengalaman mendalam, siapa pun bisa mendapatkan barang terbaik, menaklukkan setiap rintangan, dan mencapai garis akhir dengan kekuatan sendiri.<br><br>
+                    Mari kita taklukkan jalur rel bersama-sama, buktikan bahwa keahlian jauh lebih berharga daripada dompet tebal! ⚡
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============== FOOTER ============== -->
+    <footer>
+        <p>&copy; 2025 Death Rails Adventure | Panduan Tidak Resmi - Murni Edukasi & Strategi</p>
+    </footer>
+
+
+    <!-- ============== ✅ JAVASCRIPT (DITAMBAHKAN FUNGSI MISI & SUMBER) ✅ ============== -->
+    <script>
+        // === HUBUNGKAN KARTU DENGAN MODAL ===
+        const modalKarakter = document.getElementById("modalKarakter");
+        const btnKarakter = document.getElementById("bukaKarakter");
+
+        const modalKereta = document.getElementById("modalKereta");
+        const btnKereta = document.getElementById("bukaKereta");
+
+        const modalSenjata = document.getElementById("modalSenjata");
+        const btnSenjata = document.getElementById("bukaSenjata");
+
+        const modalDungeon = document.getElementById("modalDungeon");
+        const btnDungeon = document.getElementById("bukaDungeon");
+
+        // ✅ BARU: MISI SAMPINGAN
+        const modalMisi = document.getElementById("modalMisi");
+        const btnMisi = document.getElementById("bukaMisi");
+
+        // ✅ BARU: SUMBER & REFERENSI
+        const modalSumber = document.getElementById("modalSumber");
+        const btnSumber = document.getElementById("bukaSumber");
+
+
+        // === FUNGSI BUKA MODAL ===
+        btnKarakter.onclick = () => { modalKarakter.style.display = "block"; document.body.style.overflow = "hidden"; };
+        btnKereta.onclick = () => { modalKereta.style.display = "block"; document.body.style.overflow = "hidden"; };
+        btnSenjata.onclick = () => { modalSenjata.style.display = "block"; document.body.style.overflow = "hidden"; };
+        btnDungeon.onclick = () => { modalDungeon.style.display = "block"; document.body.style.overflow = "hidden"; };
+        btnMisi.onclick = () => { modalMisi.style.display = "block"; document.body.style.overflow = "hidden"; }; // ✅ Tambahan
+        btnSumber.onclick = () => { modalSumber.style.display = "block"; document.body.style.overflow = "hidden"; }; // ✅ Tambahan
+
+
+        // === FUNGSI TUTUP SEMUA MODAL ===
+        const tombolTutup = document.querySelectorAll(".tombol-tutup");
+        tombolTutup.forEach(btn => {
+            btn.onclick = function() {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = "none";
+                });
+                document.body.style.overflow = "auto";
+            }
+        });
+
+        // Tutup jika klik di luar kotak
+        window.onclick = function(e) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (e.target == modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            });
+        }
+
+
+        // Efek warna menu saat gulir
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            nav.style.background = window.scrollY > 80 ? 'rgba(18, 18, 18, 0.98)' : 'rgba(31, 31, 31, 0.95)';
+            nav.style.borderBottom = window.scrollY > 80 ? '2px solid #ff9800' : '2px solid #d32f2f';
+        });
+
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tujuan = document.querySelector(this.getAttribute('href'));
+                if (tujuan) tujuan.scrollIntoView({behavior: 'smooth'});
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
